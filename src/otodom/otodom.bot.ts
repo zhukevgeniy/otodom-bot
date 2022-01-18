@@ -13,8 +13,6 @@ export class OtodomBot {
 
   @Start()
   async start(@Ctx() ctx: Scenes.SceneContext) {
-    console.log({ a: 2 });
-
     this.#otodomPuller.subscribe(async (apartmentURLs) => {
       // @ts-ignore
       const targetURLs = diff(apartmentURLs, ctx.session.apartmentURLs || []);
