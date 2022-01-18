@@ -12,7 +12,7 @@ export class OtodomPuller extends Subject<string[]> {
     this.#otodomService = otodomService;
   }
 
-  @Cron(CronExpression.EVERY_30_MINUTES)
+  @Cron(CronExpression.EVERY_10_MINUTES)
   pull() {
     this.#otodomService.getFlats().subscribe((value) => {
       this.next(value);
