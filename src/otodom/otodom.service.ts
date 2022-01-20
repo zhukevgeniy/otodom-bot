@@ -16,7 +16,7 @@ export class OtodomService {
     this.#configService = configService;
   }
 
-  getFlats(): Observable<string[]> {
+  getApartments(): Observable<string[]> {
     return this.#httpService
       .post<ApartmentResponseDTO>(
         this.#composeUrl().toString(),
