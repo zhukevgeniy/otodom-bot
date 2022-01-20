@@ -756,9 +756,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@ntegral/nestjs-sentry@git://github.com/zhukevgeniy/nestjs-sentry#flush-sentry":
+"@ntegral/nestjs-sentry@zhukevgeniy/nestjs-sentry#flush-sentry":
   version "3.0.7"
-  resolved "git://github.com/zhukevgeniy/nestjs-sentry#90a3dfcdc2bf6620eba02383fdedf0f47785d2e9"
+  resolved "https://codeload.github.com/zhukevgeniy/nestjs-sentry/tar.gz/90a3dfcdc2bf6620eba02383fdedf0f47785d2e9"
   optionalDependencies:
     "@nestjs/graphql" "^8.0.2 || ^9.0.4"
 
