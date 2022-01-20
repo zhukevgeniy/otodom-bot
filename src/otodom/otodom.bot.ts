@@ -1,28 +1,30 @@
 import { Scenes } from 'telegraf';
 import { Ctx, Start, Update } from 'nestjs-telegraf';
-import { OtodomPuller } from './otodom-puller.service';
+import { OtodomScrapper } from './otodom-scrapper.service';
+import { SessionData } from './SessionData';
 import { diff } from '../utils/diff';
 
 @Update()
 export class OtodomBot {
-  readonly #otodomPuller: OtodomPuller;
+  readonly #otodomScrapper: OtodomScrapper;
 
-  constructor(otodomPuller: OtodomPuller) {
-    this.#otodomPuller = otodomPuller;
+  constructor(otodomScrapper: OtodomScrapper) {
+    this.#otodomScrapper = otodomScrapper;
   }
 
   @Start()
-  async start(@Ctx() ctx: Scenes.SceneContext) {
-    this.#otodomPuller.subscribe(async (apartmentURLs) => {
-      // @ts-ignore
-      const targetURLs = diff(apartmentURLs, ctx.session.apartmentURLs || []);
+  async start(@Ctx() ctx: Scenes.SceneContext<SessionData>) {
+    this.#otodomScrapper.subscribe(async (apartmentURLs) => {
+      const targetURLs = diff(
+        apartmentURLs,
+        ctx.session.__scenes.apartmentURLs || [],
+      );
 
       for (const targetURL of targetURLs) {
         await ctx.reply(targetURL);
       }
 
-      // @ts-ignore
-      ctx.session.apartmentURLs = apartmentURLs;
+      ctx.session.__scenes.apartmentURLs = apartmentURLs;
     });
   }
 }
