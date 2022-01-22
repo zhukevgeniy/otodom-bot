@@ -5,6 +5,7 @@ import { SentryModule } from '@ntegral/nestjs-sentry';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { OtodomModule } from './otodom/otodom.module';
 import { sessionMiddleware } from './middlewares/session';
+import { HealthController } from './health.controller';
 
 @Module({
   imports: [
@@ -29,5 +30,6 @@ import { sessionMiddleware } from './middlewares/session';
     ScheduleModule.forRoot(),
     OtodomModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}
